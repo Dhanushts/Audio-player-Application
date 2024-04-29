@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated M to Music Club</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .piece {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease;
+  }
+
+  .word {
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 80px;
+    opacity: 0;
+    transition: all 1s ease;
+  }
+
+  /* Styling for individual letters */
+  .letter {
+    display: inline-block;
+    color: #FF5733; /* Change color as desired */
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="piece" style="top: 0; left: 0;">M</div>
+  <div class="piece" style="top: 0; left: 50px;">U</div>
+  <div class="piece" style="top: 50px; left: 0;">S</div>
+  <div class="piece" style="top: 50px; left: 50px;">I</div>
+  <div class="piece" style="top: 100px; left: 0;">C</div>
+  <div class="piece" style="top: 100px; left: 50px;">C</div>
+  <div class="piece" style="top: 150px; left: 0;">L</div>
+  <div class="piece" style="top: 150px; left: 50px;">U</div>
+  <div class="piece" style="top: 200px; left: 0;">B</div>
+</div>
+<div class="word">
+  <span class="letter" style="color: #FF5733;">M</span>
+  <span class="letter" style="color: #C70039;">U</span>
+  <span class="letter" style="color: #900C3F;">S</span>
+  <span class="letter" style="color: #581845;">I</span>
+  <span class="letter" style="color: #FFC300;">C</span>
+  <span class="letter" style="color: #DAF7A6;">C</span>
+  <span class="letter" style="color: #9ACD32;">L</span>
+  <span class="letter" style="color: #7FFF00;">U</span>
+  <span class="letter" style="color: #00FFFF;">B</span>
+</div>
+
+<script>
+  setTimeout(function() {
+    const pieces = document.querySelectorAll('.piece');
+    pieces.forEach(piece => {
+      piece.style.top = Math.floor(Math.random() * 300) - 150 + 'px';
+      piece.style.left = Math.floor(Math.random() * 300) - 150 + 'px';
+      piece.style.transform = 'rotate(' + Math.floor(Math.random() * 360) + 'deg)';
+      piece.style.opacity = '0';
+    });
+
+    const word = document.querySelector('.word');
+    word.style.opacity = '1';
+  }, 1000); // Start after 1 second
+
+  setTimeout(function() {
+    window.location.href = 'index.html';
+  }, 5000); // 5 seconds
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concert Booking Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-size: 100% 100%;
+            background: url('51.jpg') no-repeat fixed;
+            margin: 0;
+           
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Concert Booking Form</h1>
+        <form action="#" method="post" id="booking-form" onsubmit="return validateForm()">
+            <label for="event-name">Event Name:</label>
+            <input type="text" id="event-name" name="event-name" required>
+            <span id="event-name-error" class="error-message"></span>
+
+            <label for="event-date">Event Date:</label>
+            <input type="date" id="event-date" name="event-date" required>
+            <span id="event-date-error" class="error-message"></span>
+
+            <label for="venue">Venue:</label>
+            <input type="text" id="venue" name="venue" required>
+            <span id="venue-error" class="error-message"></span>
+
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" required>
+            <span id="first-name-error" class="error-message"></span>
+
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" required>
+            <span id="last-name-error" class="error-message"></span>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span id="email-error" class="error-message"></span>
+
+            <label for="phone">Phone No:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <span id="phone-error" class="error-message"></span>
+
+            <label for="seating-option">Seating Option:</label>
+            <select id="seating-option" name="seating-option" required>
+                <option value="Front stage">Front stage</option>
+                <option value="Middle">Middle</option>
+                <option value="Balcony">Balcony</option>
+            </select>
+            <span id="seating-option-error" class="error-message"></span>
+
+            <label for="tickets">Number of Tickets:</label>
+            <input type="number" id="tickets" name="tickets" required>
+            <span id="tickets-error" class="error-message"></span>
+
+            <label for="comments">Any questions or comments?:</label>
+            <textarea rows="4" cols="50" id="comments" name="comments" required></textarea>
+            <span id="comments-error" class="error-message"></span>
+            <div id="tick-symbol" style="display: none; text-align: center; color: #007BFF; font-size: 24px;">&#10004;</div>
+            <div id="form-messages" style="text-align: center; margin-top: 10px;"></div>
+
+            <input type="submit" value="Book Now">
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            // Reset error messages
+            document.getElementById('event-name-error').innerText = '';
+            document.getElementById('event-date-error').innerText = '';
+            document.getElementById('venue-error').innerText = '';
+            document.getElementById('first-name-error').innerText = '';
+            document.getElementById('last-name-error').innerText = '';
+            document.getElementById('email-error').innerText = '';
+            document.getElementById('phone-error').innerText = '';
+            document.getElementById('seating-option-error').innerText = '';
+            document.getElementById('tickets-error').innerText = '';
+            document.getElementById('comments-error').innerText = '';
+    
+            // Event Name validation
+            var eventName = document.getElementById('event-name').value.trim();
+            if (!eventName) {
+                document.getElementById('event-name-error').innerText = 'Event Name is required.';
+                return false;
+            }
+    
+            // Event Date validation
+            var eventDate = document.getElementById('event-date').value;
+            if (!eventDate) {
+                document.getElementById('event-date-error').innerText = 'Event Date is required.';
+                return false;
+            }
+    
+            // Venue validation
+            var venue = document.getElementById('venue').value.trim();
+            if (!venue) {
+                document.getElementById('venue-error').innerText = 'Venue is required.';
+                return false;
+            }
+    
+            // First Name validation
+            var firstName = document.getElementById('first-name').value.trim();
+            if (!firstName) {
+                document.getElementById('first-name-error').innerText = 'First Name is required.';
+                return false;
+            } else if (!isValidName(firstName)) {
+                document.getElementById('first-name-error').innerText = 'First Name cannot start with a number or special character.';
+                return false;
+            }
+    
+            // Last Name validation
+            var lastName = document.getElementById('last-name').value.trim();
+            if (!lastName) {
+                document.getElementById('last-name-error').innerText = 'Last Name is required.';
+                return false;
+            } else if (!isValidName(lastName)) {
+                document.getElementById('last-name-error').innerText = 'Last Name cannot start with a number or special character.';
+                return false;
+            }
+    
+            // Email validation
+            var email = document.getElementById('email').value.trim();
+            if (!isValidEmail(email)) {
+                document.getElementById('email-error').innerText = 'Please enter a valid email address.';
+                return false;
+            }
+    
+            // Phone validation
+            var phone = document.getElementById('phone').value.trim();
+            if (!isValidPhone(phone)) {
+                document.getElementById('phone-error').innerText = 'Please enter a valid phone number.';
+                return false;
+            }
+    
+            // Seating Option validation
+            var seatingOption = document.getElementById('seating-option').value;
+            if (!seatingOption) {
+                document.getElementById('seating-option-error').innerText = 'Seating Option is required.';
+                return false;
+            }
+    
+            // Number of Tickets validation
+            var tickets = document.getElementById('tickets').value.trim();
+            if (!isValidNumber(tickets)) {
+                document.getElementById('tickets-error').innerText = 'Please enter a valid number of tickets.';
+                return false;
+            }
+    
+            // Comments validation
+            var comments = document.getElementById('comments').value.trim();
+            if (!comments) {
+                document.getElementById('comments-error').innerText = 'Comments are required.';
+                return false;
+            }
+    
+            // Redirect to a new page with the welcome message
+            window.location.href = 'confirmation.html';
+    
+            // Prevent the form from submitting (since we handled it)
+            return false;
+        }
+    
+        function isValidName(name) {
+            // Check if the name starts with a letter
+            return /^[a-zA-Z]/.test(name);
+        }
+    
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    
+        function isValidPhone(phone) {
+            const phoneRegex = /^\d{10}$/;
+            return phoneRegex.test(phone);
+        }
+    
+        function isValidNumber(value) {
+            const numberRegex = /^[1-9]\d*$/;
+            return numberRegex.test(value);
+        }
+    </script>
+    

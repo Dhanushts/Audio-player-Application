@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Your Title</title>
+    <style> 
+        body {
+            background-image: url('51.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100%;
+            color: white;
+            font-family: verdana;
+        }
+        h1 {
+            font-size: 50px;
+            text-align: center;
+        }
+        .button {
+            text-align: center;
+        }
+        .button a {
+            color: rgb(245, 247, 248);
+            text-align: center;
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px;
+            background-color: #3498db;
+            border-radius: 5px;
+            font-size: 24px;
+            text-decoration: none;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        #goBack {
+            font-size: 30px;
+            text-align: center;
+            margin-top: 20px;
+            font-family: impact;
+        }
+        #marqueeText {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <h1><strong>UPCOMING EVENTS</strong></h1>
+    <div class="button">
+        <a href="book.html">BOOK CONCERTS</a>
+        <a href="#" id="showModal">READ RULES</a>
+    </div>
+    <div id="marqueeText" style="text-align: center;">
+        <marquee behavior="scroll" direction="left">Upcoming concerts will be shortly informed.</marquee>
+    </div>
+    <br>
+    <div id="goBack"><a href="index.html">GO BACK</a></div>
+
+    <div id="myModal" style="display: none; text-align: left; padding: 20px;">
+        <h2>Concert Rules and Regulations</h2>
+        <p>1. Please arrive at least 30 minutes before the concert starts.</p>
+        <p>2. No outside food or drinks are allowed inside the venue.</p>
+        <p>3. Keep your mobile phones on silent mode during the performance.</p>
+        <p>4. Respect the performers and fellow audience members.</p>
+        <p>5. Photography and recording are not allowed without permission.</p>
+        <p>6. Follow any additional rules announced by the event staff.</p>
+        <button id="closeModal">CLOSE RULES</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            
+            $(".button a").on("click", function () {
+                alert("Booking concerts functionality goes here!");
+            });
+
+            $("#showModal").on("click", function () {
+                $("#myModal").fadeIn();
+            });
+
+            $("#closeModal").on("click", function () {
+                $("#myModal").fadeOut();
+            });
+        });
+    </script>
+</body>
+</html>

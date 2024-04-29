@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <style>
+           body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('background2.jpg'); 
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: slide-in 0.5s ease-out;
+        }
+        @keyframes slide-in {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease-in-out;
+        }
+        textarea {
+            resize: vertical;
+            height: 150px;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .confirmation {
+            margin-top: 20px;
+            background-color: #007bff;
+            border: 1px solid #0056b3;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 4px;
+            animation: fade-in 1s ease-out;
+        }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .error {
+            color: #dc3545;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .icon {
+            position: relative;
+            top: 6px;
+            margin-right: 5px;
+        }
+        .rating-label {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .rating-input {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        /* Additional Styling */
+        .rating-input input[type="radio"] {
+            display: none;
+        }
+        .rating-input label {
+            display: inline-block;
+            cursor: pointer;
+            color: #ccc;
+            font-size: 24px;
+            transition: color 0.3s ease-in-out;
+        }
+        .rating-input label:hover,
+        .rating-input label:hover ~ label,
+        .rating-input input[type="radio"]:checked ~ label {
+            color: #f7d32e;
+        }
+    </style>
+</head>
+<body>
+
+    <div ng-app="feedbackFormApp" ng-controller="FeedbackFormController" class="container">
+        <h2>Feedback Form</h2>
+        <form ng-submit="submitForm()" name="feedbackForm" novalidate>
+            <p>Name: <input type="text" ng-model="formData.name" placeholder="Enter your name" pattern="[a-zA-Z ]+" required></p>
+            <div class="error" ng-show="feedbackForm.name.$error.required && feedbackForm.name.$dirty">
+                <i class="fas fa-exclamation-circle icon"></i> Name is required
+            </div>
+            <div class="error" ng-show="feedbackForm.name.$error.pattern && feedbackForm.name.$dirty">
+                <i class="fas fa-exclamation-circle icon"></i> Please enter a valid name (letters and spaces only)
+            </div>
+            <p>Email: <input type="email" ng-model="formData.email" placeholder="Enter your email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required></p>
+            <div class="error" ng-show="feedbackForm.email.$error.required && feedbackForm.email.$dirty">
+                <i class="fas fa-exclamation-circle icon"></i> Email is required
+            </div>
+            <div class="error" ng-show="feedbackForm.email.$error.pattern && feedbackForm.email.$dirty">
+                <i class="fas fa-exclamation-circle icon"></i> Please enter a valid email address
+            </div>
+            <p>Feedback: <textarea ng-model="formData.feedback" placeholder="Enter your feedback" required></textarea></p>
+            <div class="error" ng-show="feedbackForm.feedback.$error.required && feedbackForm.feedback.$dirty">
+                <i class="fas fa-exclamation-circle icon"></i> Feedback is required
+            </div>
+            <p class="rating-label">Rating:</p>
+            <div class="rating-input">
+                <input type="radio" id="star5" ng-model="formData.rating" value="5" required>
+                <label for="star5">&#9733;</label>
+                <input type="radio" id="star4" ng-model="formData.rating" value="4" required>
+                <label for="star4">&#9733;</label>
+                <input type="radio" id="star3" ng-model="formData.rating" value="3" required>
+                <label for="star3">&#9733;</label>
+                <input type="radio" id="star2" ng-model="formData.rating" value="2" required>
+                <label for="star2">&#9733;</label>
+                <input type="radio" id="star1" ng-model="formData.rating" value="1" required>
+                <label for="star1">&#9733;</label>
+            </div>
+            <br><br>
+            <button type="submit" ng-disabled="feedbackForm.$invalid">Submit</button>
+        </form>
+        <div ng-show="showConfirmation" class="confirmation">{{confirmationMessage}}</div>
+    </div>
+    
+    <script>
+        angular.module('feedbackFormApp', [])
+            .controller('FeedbackFormController', ['$scope', function($scope) {
+                $scope.formData = {};
+                $scope.showConfirmation = false;
+    
+                $scope.submitForm = function() {
+                    $scope.showConfirmation = true;
+                    $scope.confirmationMessage = "Thank you, " + $scope.formData.name + ", for your feedback! We appreciate it. You've rated us " + $scope.formData.rating + " stars and your feedback is: '" + $scope.formData.feedback + "'.";
+                    $scope.formData = {};
+                    $scope.feedbackForm.$setPristine();
+                    $scope.feedbackForm.$setUntouched();
+                };
+            }]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Music Club</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('background2.jpg') center center fixed;
+            background-size: cover;
+            font-family: 'Open Sans', sans-serif;
+            color: #333; 
+        }
+
+        .login-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); 
+            border-radius: 10px; 
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+            animation: fadeInUp 1s ease; 
+        }
+
+        .card {
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        input:hover,
+        select:hover {
+            border-color: #17a2b8;
+        }
+
+        .btn-primary {
+            background-color: #17a2b8; 
+            border-color: #17a2b8;
+        }
+
+        .btn-primary:hover {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .form-group label {
+            color: #17a2b8; 
+        }
+
+        .text-center a {
+            color: #17a2b8; 
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .text-center a:hover {
+            color: #0a5a70; 
+        }
+
+        
+        .fadeOut {
+            animation: fadeOut 1s ease;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 login-container animated slideInRight">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center">Register to Music Club</h2>
+                    <form >
+                        <div class="form-group">
+                            <label for="firstName">Name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name" name="fname">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Your Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email ID" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password" name="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="Confirm">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </form>
+                    <p class="text-center animated shake mt-3">Already have an account? <a href="login1.html" id="loginLink">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#loginLink').click(function(event) {
+            event.preventDefault();
+            $('.login-container').addClass('animated fadeOut');
+            setTimeout(function() {
+                window.location.href = 'login1.html';
+            }, 1000);
+        });
+    });
+</script>
+</body>
+</html>

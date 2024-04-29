@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .confirmation-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tick-symbol {
+            color: #007BFF;
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-message {
+            color: #333;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confirmation-container">
+        <div class="tick-symbol">&#10004;</div>
+        <div class="confirmation-message">
+            <p>Welcome! Your booking is confirmed. Thank you!</p>
+        </div>
+    </div>
+
+    <script>
+        // Redirect to the home page after 3 seconds (adjust as needed)
+        setTimeout(function () {
+            window.location.href = 'index.html'; // Replace 'home.html' with the actual home page URL
+        }, 4000); // 3000 milliseconds (3 seconds)
+    </script>
+
+</body>
+</html>
